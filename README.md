@@ -29,7 +29,7 @@ Android 方向本轮暂缓，后续开放。
 |---|---|---|
 | [题 1](tracks/vela/task-1-weather/) | 一屏挑战：手环天气单页排版 | UI 设计、信息层级、小屏适配 |
 | [题 2](tracks/vela/task-2-restyle/) | 改版题：静态壳 + 三块新功能 | 自绘键盘、功能设计、UI、改版维护 |
-| [题 3](tracks/vela/task-3-whack-a-mole/) | 完整 rpk：打地鼠小游戏 | 完整开发、多页路由、玩法与反馈 |
+| [题 3](tracks/vela/task-3-whack-a-mole/) | 完整 rpk：打地鼠 | 核心玩法、多页路由、代码结构 |
 
 - 题 1 / 题 3 可基于 [`tracks/vela/shared/starter/`](tracks/vela/shared/starter/) 极简脚手架开始；
 - 题 2 使用题目自带的静态壳工程 [`tracks/vela/task-2-restyle/starter/`](tracks/vela/task-2-restyle/starter/)（由「股市大亨」裁剪而来，包名 `com.bluebridge.review`，现金固定 80000）；
