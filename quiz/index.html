@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>线上答题测试 · 蓝桥工作室</title>
+  <meta name="description" content="蓝桥工作室招新线上答题：编程与计算机基础术语知识，三关难度递进，题库公开。">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg-decor" aria-hidden="true"></div>
+
+  <main class="app">
+    <!-- ============ 首页 ============ -->
+    <section id="view-home" class="view">
+      <header class="hero card">
+        <p class="eyebrow">BLUEBRIDGE STUDIO · 招新评测</p>
+        <h1>线上答题测试</h1>
+        <p class="lead">编程与计算机基础 · 三关难度递进 · <strong>题目全部公开</strong></p>
+        <p id="bank-meta" class="meta"></p>
+      </header>
+
+      <section class="card">
+        <h2 class="section-title">玩法说明</h2>
+        <ul class="rules">
+          <li>共三关，每关从公开题库中随机抽取 <strong>10 题</strong>；答对 <strong>6 题</strong>即通关，解锁下一关。</li>
+          <li>每道题作答后立即显示正确答案与解析，边测边学。</li>
+          <li>选项顺序会随机打乱——背固定选项没有意义，但题目本身公开，欢迎提前学习。</li>
+          <li>进度保存在本地浏览器，换设备或清除缓存会重置。</li>
+        </ul>
+
+        <div id="level-cards" class="level-cards"></div>
+
+        <div class="actions">
+          <button id="btn-start" class="btn btn-primary" type="button">开始闯关</button>
+          <button id="btn-reset" class="btn btn-ghost" type="button">重置进度</button>
+        </div>
+      </section>
+
+      <footer class="foot">
+        <p>蓝桥工作室 · <a href="https://github.com/EstimateFaster/bluebridge-review" target="_blank" rel="noopener">题库与源码公开于 GitHub</a></p>
+      </footer>
+    </section>
+
+    <!-- ============ 答题 ============ -->
+    <section id="view-quiz" class="view hidden">
+      <div class="quiz-top">
+        <button id="btn-quit" class="btn btn-ghost btn-sm" type="button">← 退出</button>
+        <div class="quiz-status">
+          <span id="quiz-level-name" class="quiz-level-name"></span>
+          <span id="quiz-progress-text" class="meta"></span>
+        </div>
+      </div>
+      <div class="progress-track" role="progressbar" aria-label="本关进度">
+        <div id="quiz-progress-bar" class="progress-fill"></div>
+      </div>
+
+      <article class="card question-card">
+        <div class="q-tags">
+          <span id="q-cat" class="tag"></span>
+          <span id="q-type" class="tag tag-alt"></span>
+        </div>
+        <h2 id="q-text" class="q-text"></h2>
+        <div id="q-options" class="options"></div>
+
+        <div id="q-feedback" class="feedback hidden" aria-live="polite">
+          <p id="q-feedback-title" class="feedback-title"></p>
+          <p id="q-explain" class="feedback-explain"></p>
+        </div>
+
+        <div class="quiz-actions">
+          <button id="btn-next" class="btn btn-primary hidden" type="button">下一题</button>
+        </div>
+      </article>
+    </section>
+
+    <!-- ============ 结果 ============ -->
+    <section id="view-result" class="view hidden">
+      <article class="card result-card">
+        <p id="result-level" class="eyebrow"></p>
+        <div id="result-ring" class="ring">
+          <div class="ring-inner">
+            <strong id="result-score"></strong>
+            <span id="result-total" class="meta"></span>
+          </div>
+        </div>
+        <h2 id="result-title" class="result-title"></h2>
+        <p id="result-sub" class="result-sub"></p>
+        <p id="result-time" class="meta"></p>
+
+        <div id="result-cats" class="cat-stats"></div>
+        <div id="result-actions" class="actions"></div>
+      </article>
+
+      <section id="review-card" class="card">
+        <h2 class="section-title">错题回顾</h2>
+        <div id="review-list" class="review-list"></div>
+      </section>
+
+      <footer class="foot">
+        <p id="result-credential" class="meta"></p>
+      </footer>
+    </section>
+  </main>
+
+  <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

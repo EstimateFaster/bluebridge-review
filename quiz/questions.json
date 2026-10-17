@@ -1,0 +1,922 @@
+{
+  "meta": {
+    "title": "蓝桥工作室 · 线上答题测试",
+    "version": "1.0.0",
+    "updated": "2026-10-17",
+    "license": "题目公开，欢迎学习交流；请勿用于商业转载。",
+    "note": "每次从各难度随机抽题、选项乱序，背固定答案没有意义。"
+  },
+  "levels": [
+    {
+      "id": 1,
+      "name": "第一关 · 入门常识",
+      "desc": "计算机、编程、网络的基础常识，适合刚开始接触开发的同学。",
+      "draw": 10,
+      "pass": 0.6
+    },
+    {
+      "id": 2,
+      "name": "第二关 · 进阶辨析",
+      "desc": "术语辨析与常见操作，考验你是真的理解，还是只是听过。",
+      "draw": 10,
+      "pass": 0.6
+    },
+    {
+      "id": 3,
+      "name": "第三关 · 深水区",
+      "desc": "容易混淆的底层概念、工程实践与 AI 协作，欢迎挑战。",
+      "draw": 10,
+      "pass": 0.6
+    }
+  ],
+  "categories": [
+    { "id": "cs", "name": "计算机基础" },
+    { "id": "prog", "name": "编程基础" },
+    { "id": "web", "name": "网络与 Web" },
+    { "id": "tools", "name": "工具与操作" },
+    { "id": "mobile", "name": "移动端与 Vela" },
+    { "id": "ai", "name": "AI 与协作" }
+  ],
+  "questions": [
+    {
+      "id": "l1-01",
+      "level": 1,
+      "cat": "cs",
+      "type": "single",
+      "q": "1 字节（Byte）等于多少位（bit）？",
+      "options": ["4 位", "8 位", "16 位", "1024 位"],
+      "answer": 1,
+      "explain": "1 Byte = 8 bit，这是计算机存储单位最基础的换算。"
+    },
+    {
+      "id": "l1-02",
+      "level": 1,
+      "cat": "cs",
+      "type": "single",
+      "q": "计算机内部用什么进制表示和存储数据？",
+      "options": ["十进制", "二进制", "八进制", "十六进制"],
+      "answer": 1,
+      "explain": "计算机底层由开关电路组成，用二进制表示数据；十六进制只是更紧凑的书写方式。"
+    },
+    {
+      "id": "l1-03",
+      "level": 1,
+      "cat": "cs",
+      "type": "single",
+      "q": "下列哪一个是操作系统？",
+      "options": ["Windows", "Word", "Chrome", "Photoshop"],
+      "answer": 0,
+      "explain": "Windows 是操作系统，其余三个都是运行在操作系统之上的应用软件。"
+    },
+    {
+      "id": "l1-04",
+      "level": 1,
+      "cat": "cs",
+      "type": "single",
+      "q": "1 KB 通常等于多少字节？",
+      "options": ["100", "1000", "1024", "4096"],
+      "answer": 2,
+      "explain": "按二进制换算 1 KB = 1024 B（部分厂商标称存储容量时按 1000 计算）。"
+    },
+    {
+      "id": "l1-05",
+      "level": 1,
+      "cat": "cs",
+      "type": "single",
+      "q": "断电后数据会丢失的部件是？",
+      "options": ["硬盘", "U 盘", "内存（RAM）", "光盘"],
+      "answer": 2,
+      "explain": "RAM 是易失性存储器，断电即失；硬盘、U 盘、光盘都能长期保存数据。"
+    },
+    {
+      "id": "l1-06",
+      "level": 1,
+      "cat": "cs",
+      "type": "judge",
+      "q": "操作系统是用户和硬件之间的桥梁。",
+      "answer": true,
+      "explain": "操作系统负责管理硬件资源，并向上层应用提供统一的接口。"
+    },
+    {
+      "id": "l1-07",
+      "level": 1,
+      "cat": "prog",
+      "type": "single",
+      "q": "变量名 score 和 Score 在大多数编程语言中是？",
+      "options": ["同一个变量", "两个不同的变量", "语法错误", "取决于注释内容"],
+      "answer": 1,
+      "explain": "大多数语言区分大小写，score 和 Score 是两个不同的标识符。"
+    },
+    {
+      "id": "l1-08",
+      "level": 1,
+      "cat": "prog",
+      "type": "single",
+      "q": "下面哪一句是循环语句？",
+      "options": ["if (x > 0)", "for (let i = 0; i < 3; i++)", "let x = 1", "// 重复三次"],
+      "answer": 1,
+      "explain": "for 是典型的循环语句；if 是条件语句，注释不会被执行。"
+    },
+    {
+      "id": "l1-09",
+      "level": 1,
+      "cat": "prog",
+      "type": "single",
+      "q": "函数的作用不包括哪一项？",
+      "options": ["复用代码", "接收输入", "返回结果", "自动修复 bug"],
+      "answer": 3,
+      "explain": "函数能复用、能收参数、能返回值，但不会自动发现和修复 bug。"
+    },
+    {
+      "id": "l1-10",
+      "level": 1,
+      "cat": "prog",
+      "type": "single",
+      "q": "在 JavaScript 中，表达式 \"10\" + 5 的结果是？",
+      "options": ["15", "\"105\"", "\"15\"", "报错"],
+      "answer": 1,
+      "explain": "字符串参与加号运算时会做拼接，数字 5 被转换成 \"5\"，结果是 \"105\"。"
+    },
+    {
+      "id": "l1-11",
+      "level": 1,
+      "cat": "prog",
+      "type": "judge",
+      "q": "注释会被程序执行，并影响运行结果。",
+      "answer": false,
+      "explain": "注释是写给人看的，编译或解释时会被忽略，不影响运行结果。"
+    },
+    {
+      "id": "l1-12",
+      "level": 1,
+      "cat": "prog",
+      "type": "single",
+      "q": "数字 123 在大多数编程语言里属于什么类型？",
+      "options": ["字符串", "整数", "布尔值", "数组"],
+      "answer": 1,
+      "explain": "123 是不带小数点的整数；带引号的 \"123\" 才是字符串。"
+    },
+    {
+      "id": "l1-13",
+      "level": 1,
+      "cat": "web",
+      "type": "single",
+      "q": "URL 中的 https 表示什么？",
+      "options": ["文件格式", "传输协议", "网站名称", "数据库类型"],
+      "answer": 1,
+      "explain": "https 是 HTTP 加 TLS 加密的传输协议。"
+    },
+    {
+      "id": "l1-14",
+      "level": 1,
+      "cat": "web",
+      "type": "single",
+      "q": "在浏览器输入域名后，系统需要先把它解析成什么？",
+      "options": ["IP 地址", "文件名", "图片", "端口号"],
+      "answer": 0,
+      "explain": "DNS 负责把域名解析成 IP 地址，浏览器才能找到服务器。"
+    },
+    {
+      "id": "l1-15",
+      "level": 1,
+      "cat": "web",
+      "type": "single",
+      "q": "打开网页时出现 404，通常意味着？",
+      "options": ["服务器彻底坏了", "请求的页面不存在", "密码错误", "网线没插"],
+      "answer": 1,
+      "explain": "404 Not Found 表示服务器正常响应，但请求的资源不存在。"
+    },
+    {
+      "id": "l1-16",
+      "level": 1,
+      "cat": "web",
+      "type": "single",
+      "q": "中文网页最常用的字符编码是？",
+      "options": ["JPEG", "UTF-8", "MP3", "ZIP"],
+      "answer": 1,
+      "explain": "UTF-8 兼容性好，是中文网页最常用的字符编码；其余三个都是文件格式。"
+    },
+    {
+      "id": "l1-17",
+      "level": 1,
+      "cat": "web",
+      "type": "judge",
+      "q": "HTTP 是明文传输协议。",
+      "answer": true,
+      "explain": "HTTP 本身不加密，内容可能被中间人看到；HTTPS 在 HTTP 之上加了 TLS 加密。"
+    },
+    {
+      "id": "l1-18",
+      "level": 1,
+      "cat": "web",
+      "type": "single",
+      "q": "前端代码（HTML/CSS/JS）主要在哪里运行？",
+      "options": ["用户的浏览器", "数据中心", "打印机", "路由器"],
+      "answer": 0,
+      "explain": "前端代码在用户浏览器里解析执行，后端代码才运行在服务器上。"
+    },
+    {
+      "id": "l1-19",
+      "level": 1,
+      "cat": "tools",
+      "type": "single",
+      "q": "命令行中的 cd 命令通常用来做什么？",
+      "options": ["删除文件", "切换当前目录", "创建文件", "复制文件"],
+      "answer": 1,
+      "explain": "cd 是 change directory 的缩写，用于切换当前工作目录。"
+    },
+    {
+      "id": "l1-20",
+      "level": 1,
+      "cat": "tools",
+      "type": "single",
+      "q": "在 Git 中，把改动保存为一个版本记录的命令是？",
+      "options": ["git clone", "git commit", "git push", "git log"],
+      "answer": 1,
+      "explain": "git commit 把暂存区的改动保存为本地版本记录；push 是推送到远程仓库。"
+    },
+    {
+      "id": "l1-21",
+      "level": 1,
+      "cat": "tools",
+      "type": "single",
+      "q": "下列哪个是图片文件的扩展名？",
+      "options": [".mp4", ".png", ".docx", ".exe"],
+      "answer": 1,
+      "explain": ".png 是图片格式；.mp4 是视频，.docx 是文档，.exe 是可执行程序。"
+    },
+    {
+      "id": "l1-22",
+      "level": 1,
+      "cat": "tools",
+      "type": "single",
+      "q": "下列哪个是压缩包格式？",
+      "options": [".zip", ".txt", ".html", ".json"],
+      "answer": 0,
+      "explain": ".zip 是常见的压缩包格式。"
+    },
+    {
+      "id": "l1-23",
+      "level": 1,
+      "cat": "tools",
+      "type": "single",
+      "q": "在大多数软件中，快捷键 Ctrl+Z（Mac 上为 Cmd+Z）通常表示？",
+      "options": ["撤销", "保存", "复制", "全选"],
+      "answer": 0,
+      "explain": "Ctrl+Z 是撤销上一步操作；保存通常是 Ctrl+S，复制是 Ctrl+C，全选是 Ctrl+A。"
+    },
+    {
+      "id": "l1-24",
+      "level": 1,
+      "cat": "tools",
+      "type": "judge",
+      "q": "在 Git 中，提交（commit）必须联网才能完成。",
+      "answer": false,
+      "explain": "commit 在本地就能完成；把提交推送到远程仓库（push）才需要网络。"
+    },
+    {
+      "id": "l1-25",
+      "level": 1,
+      "cat": "mobile",
+      "type": "single",
+      "q": "安卓应用的安装包扩展名通常是？",
+      "options": [".rpk", ".apk", ".ipa", ".exe"],
+      "answer": 1,
+      "explain": ".apk 是 Android 安装包；.ipa 是 iOS 安装包。"
+    },
+    {
+      "id": "l1-26",
+      "level": 1,
+      "cat": "mobile",
+      "type": "single",
+      "q": "小米 Vela 快应用打包后的文件扩展名通常是？",
+      "options": [".apk", ".rpk", ".zip", ".dmg"],
+      "answer": 1,
+      "explain": "快应用打包为 .rpk 文件，再安装到支持快应用的设备上。"
+    },
+    {
+      "id": "l1-27",
+      "level": 1,
+      "cat": "mobile",
+      "type": "judge",
+      "q": "快应用通常运行在系统级的快应用引擎里，而不是普通网页浏览器里。",
+      "answer": true,
+      "explain": "快应用由系统级引擎运行，可以直接调用设备能力，体验接近原生应用。"
+    },
+    {
+      "id": "l1-28",
+      "level": 1,
+      "cat": "ai",
+      "type": "single",
+      "q": "使用 AI 编程助手时，最稳妥的做法是？",
+      "options": ["直接提交，不用检查", "读懂并运行测试生成的代码", "只看代码行数多不多", "把账号密码贴进对话"],
+      "answer": 1,
+      "explain": "AI 会犯错。读懂逻辑并实际运行验证，才是把 AI 当工具而不是当答案。"
+    },
+    {
+      "id": "l1-29",
+      "level": 1,
+      "cat": "ai",
+      "type": "judge",
+      "q": "AI 生成的内容一定正确，可以直接使用。",
+      "answer": false,
+      "explain": "AI 可能编造事实或代码，必须自己验证；这也是本套题存在的原因。"
+    },
+    {
+      "id": "l1-30",
+      "level": 1,
+      "cat": "ai",
+      "type": "judge",
+      "q": "同一个问题换一种问法，AI 的回答可能不一样。",
+      "answer": true,
+      "explain": "大语言模型的输出受提示词影响很大，换问法得到不同答案很常见。"
+    },
+    {
+      "id": "l2-01",
+      "level": 2,
+      "cat": "cs",
+      "type": "single",
+      "q": "在 32 位系统中，一个指针通常占多少字节？",
+      "options": ["2", "4", "8", "16"],
+      "answer": 1,
+      "explain": "32 位系统的地址总线宽度为 32 位，指针用 4 字节表示地址。"
+    },
+    {
+      "id": "l2-02",
+      "level": 2,
+      "cat": "cs",
+      "type": "single",
+      "q": "关于进程和线程，下列说法正确的是？",
+      "options": ["线程是资源分配的基本单位", "同一进程内的线程共享内存地址空间", "进程不能创建线程", "线程一定比进程慢"],
+      "answer": 1,
+      "explain": "进程是资源分配的基本单位，线程是调度的基本单位；同进程的线程共享地址空间。"
+    },
+    {
+      "id": "l2-03",
+      "level": 2,
+      "cat": "cs",
+      "type": "single",
+      "q": "十六进制数 0x1F 对应的十进制是？",
+      "options": ["15", "31", "32", "63"],
+      "answer": 1,
+      "explain": "0x1F = 1×16 + 15 = 31。"
+    },
+    {
+      "id": "l2-04",
+      "level": 2,
+      "cat": "cs",
+      "type": "judge",
+      "q": "虚拟内存可以让程序使用的地址空间超过物理内存大小。",
+      "answer": true,
+      "explain": "虚拟内存把不常用的数据换出到磁盘，使程序看到的地址空间可以大于物理内存。"
+    },
+    {
+      "id": "l2-05",
+      "level": 2,
+      "cat": "prog",
+      "type": "single",
+      "q": "时间复杂度为 O(log n) 的典型算法是？",
+      "options": ["顺序遍历数组", "二分查找", "冒泡排序", "遍历链表求和"],
+      "answer": 1,
+      "explain": "二分查找每次把范围缩小一半，复杂度是 O(log n)。"
+    },
+    {
+      "id": "l2-06",
+      "level": 2,
+      "cat": "prog",
+      "type": "single",
+      "q": "栈（Stack）的特点是？",
+      "options": ["先进先出", "后进先出", "随机存取", "只能存数字"],
+      "answer": 1,
+      "explain": "栈是后进先出（LIFO）；先进先出的是队列（Queue）。"
+    },
+    {
+      "id": "l2-07",
+      "level": 2,
+      "cat": "prog",
+      "type": "single",
+      "q": "哈希表（Hash Map）查询的平均时间复杂度通常是？",
+      "options": ["O(1)", "O(n)", "O(n²)", "O(log n)"],
+      "answer": 0,
+      "explain": "哈希表通过哈希函数直接定位，平均查询是常数时间 O(1)。"
+    },
+    {
+      "id": "l2-08",
+      "level": 2,
+      "cat": "prog",
+      "type": "single",
+      "q": "递归函数必须具备的关键要素是？",
+      "options": ["循环语句", "终止条件", "网络请求", "全局变量"],
+      "answer": 1,
+      "explain": "递归必须能在某个条件下停止并返回，否则会无限递归直至栈溢出。"
+    },
+    {
+      "id": "l2-09",
+      "level": 2,
+      "cat": "prog",
+      "type": "single",
+      "q": "下列哪一项不是 JSON 支持的数据类型？",
+      "options": ["字符串", "数字", "布尔值", "函数"],
+      "answer": 3,
+      "explain": "JSON 只支持字符串、数字、布尔、null、数组和对象，不能直接表示函数。"
+    },
+    {
+      "id": "l2-10",
+      "level": 2,
+      "cat": "prog",
+      "type": "judge",
+      "q": "while (true) { } 一定能正常退出。",
+      "answer": false,
+      "explain": "条件恒为 true 且没有 break 时是死循环，不会自己退出。"
+    },
+    {
+      "id": "l2-11",
+      "level": 2,
+      "cat": "web",
+      "type": "single",
+      "q": "相比 HTTP，HTTPS 多出的核心能力是？",
+      "options": ["更快的速度", "加密传输与身份认证", "更大的带宽", "免费域名"],
+      "answer": 1,
+      "explain": "HTTPS 通过 TLS 加密传输内容，并用证书验证服务器身份。"
+    },
+    {
+      "id": "l2-12",
+      "level": 2,
+      "cat": "web",
+      "type": "single",
+      "q": "下列 HTTP 状态码中，表示服务器内部错误的是？",
+      "options": ["200", "301", "404", "500"],
+      "answer": 3,
+      "explain": "5xx 是服务器错误，500 Internal Server Error 表示服务器内部出错。"
+    },
+    {
+      "id": "l2-13",
+      "level": 2,
+      "cat": "web",
+      "type": "single",
+      "q": "DNS 的主要作用是？",
+      "options": ["加密数据", "把域名解析为 IP 地址", "压缩网页", "分配内存"],
+      "answer": 1,
+      "explain": "DNS 像互联网的电话簿，把便于记忆的域名翻译成 IP 地址。"
+    },
+    {
+      "id": "l2-14",
+      "level": 2,
+      "cat": "web",
+      "type": "single",
+      "q": "浏览器中 localStorage 和 Cookie 相比，通常哪个容量更大？",
+      "options": ["Cookie", "localStorage", "一样大", "都没有容量限制"],
+      "answer": 1,
+      "explain": "Cookie 通常只有 4 KB 左右，localStorage 一般有 5 MB 上下。"
+    },
+    {
+      "id": "l2-15",
+      "level": 2,
+      "cat": "web",
+      "type": "judge",
+      "q": "API 是「应用程序编程接口」的缩写。",
+      "answer": true,
+      "explain": "API（Application Programming Interface）是程序之间约定的调用接口。"
+    },
+    {
+      "id": "l2-16",
+      "level": 2,
+      "cat": "web",
+      "type": "single",
+      "q": "前后端交互中，REST API 最常用的数据格式是？",
+      "options": ["JSON", "PDF", "EXE", "WAV"],
+      "answer": 0,
+      "explain": "JSON 轻量、易读、几乎各语言都支持，是 REST API 的主流数据格式。"
+    },
+    {
+      "id": "l2-17",
+      "level": 2,
+      "cat": "tools",
+      "type": "single",
+      "q": "命令行工具 grep 的主要用途是？",
+      "options": ["搜索文本", "复制文件", "启动服务器", "安装依赖"],
+      "answer": 0,
+      "explain": "grep 用于在文件或输入流中按模式搜索文本。"
+    },
+    {
+      "id": "l2-18",
+      "level": 2,
+      "cat": "tools",
+      "type": "single",
+      "q": "npm install 的作用通常是？",
+      "options": ["安装项目依赖", "删除项目", "编译 C 语言代码", "部署网站"],
+      "answer": 0,
+      "explain": "npm install 读取 package.json，下载并安装项目所需的依赖包。"
+    },
+    {
+      "id": "l2-19",
+      "level": 2,
+      "cat": "tools",
+      "type": "single",
+      "q": "git push 的作用是把本地提交推送到哪里？",
+      "options": ["别人的电脑", "远程仓库", "浏览器", "打印机"],
+      "answer": 1,
+      "explain": "git push 把本地分支的提交同步到远程仓库（如 GitHub）。"
+    },
+    {
+      "id": "l2-20",
+      "level": 2,
+      "cat": "tools",
+      "type": "single",
+      "q": "chmod +x file.sh 的作用是？",
+      "options": ["删除文件", "给文件添加执行权限", "重命名文件", "查看文件内容"],
+      "answer": 1,
+      "explain": "+x 表示添加可执行权限，之后可以用 ./file.sh 运行脚本。"
+    },
+    {
+      "id": "l2-21",
+      "level": 2,
+      "cat": "tools",
+      "type": "single",
+      "q": "git diff 的作用是？",
+      "options": ["查看代码差异", "删除分支", "上传代码", "创建仓库"],
+      "answer": 0,
+      "explain": "git diff 比较工作区、暂存区或提交之间的内容差异。"
+    },
+    {
+      "id": "l2-22",
+      "level": 2,
+      "cat": "tools",
+      "type": "judge",
+      "q": "同一个 Git 仓库的主分支传统上叫 main 或 master。",
+      "answer": true,
+      "explain": "Git 默认分支早期叫 master，现在普遍改用 main，两者都是常见命名。"
+    },
+    {
+      "id": "l2-23",
+      "level": 2,
+      "cat": "mobile",
+      "type": "single",
+      "q": "Android 应用的入口、组件与权限通常声明在哪个文件？",
+      "options": ["AndroidManifest.xml", "index.html", "package.json", "README.md"],
+      "answer": 0,
+      "explain": "AndroidManifest.xml 声明应用组件、权限、包名等核心信息。"
+    },
+    {
+      "id": "l2-24",
+      "level": 2,
+      "cat": "mobile",
+      "type": "single",
+      "q": "adb 工具主要用于？",
+      "options": ["调试 Android 设备", "编辑图片", "写文档", "压缩视频"],
+      "answer": 0,
+      "explain": "adb（Android Debug Bridge）用于安装应用、查看日志、调试设备等。"
+    },
+    {
+      "id": "l2-25",
+      "level": 2,
+      "cat": "mobile",
+      "type": "single",
+      "q": "快应用页面通常用什么扩展名的文件编写？",
+      "options": [".ux", ".py", ".java", ".psd"],
+      "answer": 0,
+      "explain": "快应用使用 .ux 文件描述页面结构，配合 JS 与 CSS 完成逻辑与样式。"
+    },
+    {
+      "id": "l2-26",
+      "level": 2,
+      "cat": "mobile",
+      "type": "judge",
+      "q": "APK 和 RPK 是同一种安装包格式。",
+      "answer": false,
+      "explain": "APK 是 Android 安装包，RPK 是快应用安装包，两者格式不同。"
+    },
+    {
+      "id": "l2-27",
+      "level": 2,
+      "cat": "ai",
+      "type": "single",
+      "q": "大语言模型「一本正经地胡说八道」这种现象通常被称为？",
+      "options": ["幻觉（hallucination）", "死锁", "内存溢出", "缓存命中"],
+      "answer": 0,
+      "explain": "模型生成看似合理但实际错误的内容，称为幻觉，需要外部验证。"
+    },
+    {
+      "id": "l2-28",
+      "level": 2,
+      "cat": "ai",
+      "type": "single",
+      "q": "下面哪条提示词更可能得到可用的代码？",
+      "options": ["帮我写代码", "用 Kotlin 写一个按分数降序排列的列表页，并处理空数据", "随便", "快点写"],
+      "answer": 1,
+      "explain": "提示词越具体（语言、目标、边界条件），AI 产出越可控。"
+    },
+    {
+      "id": "l2-29",
+      "level": 2,
+      "cat": "ai",
+      "type": "judge",
+      "q": "AI 写出的代码只要语法正确，就一定符合业务需求。",
+      "answer": false,
+      "explain": "语法正确只说明能运行，业务逻辑、边界情况和真实环境适配仍需人工判断。"
+    },
+    {
+      "id": "l2-30",
+      "level": 2,
+      "cat": "ai",
+      "type": "single",
+      "q": "审查 AI 生成的代码时，最应该关注的是？",
+      "options": ["代码配色好不好看", "逻辑错误与边界遗漏", "文件大小", "注释是不是英文"],
+      "answer": 1,
+      "explain": "AI 代码最常见的问题在逻辑与边界，例如假实现、遗漏异常分支。"
+    },
+    {
+      "id": "l3-01",
+      "level": 3,
+      "cat": "cs",
+      "type": "single",
+      "q": "大端序（Big-Endian）指的是？",
+      "options": ["低位字节存放在低地址", "高位字节存放在低地址", "只适用于浮点数", "数据必须加密"],
+      "answer": 1,
+      "explain": "大端序把最高位字节放在最低地址；小端序相反。"
+    },
+    {
+      "id": "l3-02",
+      "level": 3,
+      "cat": "cs",
+      "type": "single",
+      "q": "下列哪种情况最可能导致内存泄漏？",
+      "options": ["局部变量离开作用域", "申请的内存或对象不再使用，但引用一直没释放", "使用栈变量", "函数正常返回"],
+      "answer": 1,
+      "explain": "对象已无用却仍被引用（如忘记注销的监听器），垃圾回收无法回收它。"
+    },
+    {
+      "id": "l3-03",
+      "level": 3,
+      "cat": "cs",
+      "type": "single",
+      "q": "死锁的四个必要条件中，不包括下列哪一项？",
+      "options": ["互斥", "占有并等待", "循环等待", "单线程运行"],
+      "answer": 3,
+      "explain": "死锁四个条件是互斥、占有并等待、不可剥夺、循环等待，与单线程无关。"
+    },
+    {
+      "id": "l3-04",
+      "level": 3,
+      "cat": "cs",
+      "type": "judge",
+      "q": "数据库事务 ACID 中的「原子性」指事务内的操作要么全部成功，要么全部回滚。",
+      "answer": true,
+      "explain": "原子性（Atomicity）保证事务不可分割，不会只执行一半。"
+    },
+    {
+      "id": "l3-05",
+      "level": 3,
+      "cat": "cs",
+      "type": "single",
+      "q": "关于缓存（Cache），下列说法错误的是？",
+      "options": ["缓存能减少重复计算或访问", "缓存中的数据一定永久有效", "缓存通常需要淘汰策略", "缓存命中率越高越好"],
+      "answer": 1,
+      "explain": "缓存会过期或被淘汰，需要一致性策略，不可能保证永久有效。"
+    },
+    {
+      "id": "l3-06",
+      "level": 3,
+      "cat": "prog",
+      "type": "single",
+      "q": "快速排序的平均时间复杂度是？",
+      "options": ["O(n)", "O(n log n)", "O(n²)", "O(log n)"],
+      "answer": 1,
+      "explain": "快排平均 O(n log n)，最坏情况（如已排序且选端点作基准）退化为 O(n²)。"
+    },
+    {
+      "id": "l3-07",
+      "level": 3,
+      "cat": "prog",
+      "type": "single",
+      "q": "「不可变数据（immutable）」最核心的含义是？",
+      "options": ["修改原对象", "返回新对象而不修改原对象", "只能存储数字", "数据必须加密"],
+      "answer": 1,
+      "explain": "不可变数据一旦创建就不修改，变更时返回新副本，便于追踪状态与避免副作用。"
+    },
+    {
+      "id": "l3-08",
+      "level": 3,
+      "cat": "prog",
+      "type": "single",
+      "q": "在大多数语言中，0.1 + 0.2 == 0.3 的结果通常是？",
+      "options": ["true", "false，因为浮点数存在精度误差", "编译报错", "取决于注释内容"],
+      "answer": 1,
+      "explain": "二进制浮点无法精确表示 0.1 和 0.2，相加后是 0.30000000000000004。"
+    },
+    {
+      "id": "l3-09",
+      "level": 3,
+      "cat": "prog",
+      "type": "judge",
+      "q": "时间复杂度 O(1) 表示算法执行时间与输入规模无关。",
+      "answer": true,
+      "explain": "O(1) 是常数时间，无论输入多大，执行步骤数都基本不变。"
+    },
+    {
+      "id": "l3-10",
+      "level": 3,
+      "cat": "prog",
+      "type": "single",
+      "q": "面向对象里「多态」的典型含义是？",
+      "options": ["同一接口在不同对象上有不同实现", "变量类型固定不变", "一个类只能有一个对象", "程序不能继承"],
+      "answer": 0,
+      "explain": "多态让调用方面向接口编程，不同实现类给出各自的行为。"
+    },
+    {
+      "id": "l3-11",
+      "level": 3,
+      "cat": "prog",
+      "type": "single",
+      "q": "下列哪项最符合「防御性编程」？",
+      "options": ["假设输入永远合法", "对输入做校验并处理异常", "不写任何注释", "关闭所有错误提示"],
+      "answer": 1,
+      "explain": "防御性编程假设外部输入不可靠，提前校验并处理异常分支。"
+    },
+    {
+      "id": "l3-12",
+      "level": 3,
+      "cat": "web",
+      "type": "single",
+      "q": "HTTPS 握手中，非对称加密主要用于？",
+      "options": ["传输全部业务数据", "协商或交换后续使用的密钥", "压缩数据", "缓存页面"],
+      "answer": 1,
+      "explain": "握手阶段用非对称加密安全地协商对称密钥，之后用更快的对称加密传数据。"
+    },
+    {
+      "id": "l3-13",
+      "level": 3,
+      "cat": "web",
+      "type": "single",
+      "q": "浏览器跨域（CORS）限制的本质来源是？",
+      "options": ["浏览器的同源策略", "服务器不允许访问", "防火墙拦截", "域名太短"],
+      "answer": 0,
+      "explain": "同源策略由浏览器实施，限制不同源页面读取资源；CORS 是服务器授权放行的机制。"
+    },
+    {
+      "id": "l3-14",
+      "level": 3,
+      "cat": "web",
+      "type": "single",
+      "q": "TCP 三次握手的目的不包括？",
+      "options": ["确认双方收发能力", "同步序列号", "建立可靠连接", "压缩数据"],
+      "answer": 3,
+      "explain": "三次握手用于确认双方收发能力并同步序列号，压缩是另一层的事。"
+    },
+    {
+      "id": "l3-15",
+      "level": 3,
+      "cat": "web",
+      "type": "single",
+      "q": "下列哪项最可能导致 XSS（跨站脚本）漏洞？",
+      "options": ["把用户输入直接插入页面 HTML", "使用 HTTPS", "设置强密码", "开启浏览器缓存"],
+      "answer": 0,
+      "explain": "未转义的用户输入被当 HTML 执行，就可能注入脚本；输出转义可防御。"
+    },
+    {
+      "id": "l3-16",
+      "level": 3,
+      "cat": "web",
+      "type": "judge",
+      "q": "CDN 通过把内容缓存到离用户更近的节点来加速访问。",
+      "answer": true,
+      "explain": "CDN 依靠边缘节点就近分发，降低延迟、分担源站压力。"
+    },
+    {
+      "id": "l3-17",
+      "level": 3,
+      "cat": "tools",
+      "type": "single",
+      "q": "git rebase 与 git merge 的主要区别之一是？",
+      "options": ["rebase 会改写提交历史", "merge 不能合并分支", "rebase 只能用于远程仓库", "两者完全一样"],
+      "answer": 0,
+      "explain": "rebase 把提交在目标分支上重放，历史更线性但会改写提交；merge 保留合并记录。"
+    },
+    {
+      "id": "l3-18",
+      "level": 3,
+      "cat": "tools",
+      "type": "single",
+      "q": "命令行管道 | 的作用是？",
+      "options": ["把前一个命令的输出作为后一个命令的输入", "同时启动两个程序", "加密输出", "强制结束程序"],
+      "answer": 0,
+      "explain": "管道把多个命令串起来，前一个命令的 stdout 直接成为后一个命令的 stdin。"
+    },
+    {
+      "id": "l3-19",
+      "level": 3,
+      "cat": "tools",
+      "type": "single",
+      "q": "环境变量 PATH 的作用是？",
+      "options": ["保存桌面壁纸", "指定可执行文件的搜索路径", "存储网站密码", "记录键盘快捷键"],
+      "answer": 1,
+      "explain": "系统执行命令时会到 PATH 列出的目录里查找可执行文件。"
+    },
+    {
+      "id": "l3-20",
+      "level": 3,
+      "cat": "tools",
+      "type": "judge",
+      "q": "git reset --hard 可能丢失未提交的改动。",
+      "answer": true,
+      "explain": "--hard 会重置工作区与暂存区，未提交的改动将被丢弃。"
+    },
+    {
+      "id": "l3-21",
+      "level": 3,
+      "cat": "mobile",
+      "type": "single",
+      "q": "快应用中用 storage 保存的数据，卸载应用后通常？",
+      "options": ["永久保留", "可能被清除", "自动上传云端", "会被转成图片"],
+      "answer": 1,
+      "explain": "storage 是应用本地存储，卸载应用时通常随应用数据一起被清除。"
+    },
+    {
+      "id": "l3-22",
+      "level": 3,
+      "cat": "mobile",
+      "type": "single",
+      "q": "Android 中 applicationId 与包名的关系，正确的是？",
+      "options": ["必须完全不同", "通常作为应用唯一标识，默认与包名一致", "只能由数字组成", "只影响应用图标"],
+      "answer": 1,
+      "explain": "applicationId 是应用在设备与商店中的唯一标识，默认等于包名。"
+    },
+    {
+      "id": "l3-23",
+      "level": 3,
+      "cat": "mobile",
+      "type": "judge",
+      "q": "Vela 快应用做界面适配时，需要考虑不同设备的屏幕分辨率。",
+      "answer": true,
+      "explain": "设备屏幕尺寸与分辨率不同，需要用设计基准宽度与自适应单位做适配。"
+    },
+    {
+      "id": "l3-24",
+      "level": 3,
+      "cat": "mobile",
+      "type": "judge",
+      "q": "快应用的 manifest.json 通常用于声明包名、版本、页面等信息。",
+      "answer": true,
+      "explain": "manifest 描述应用身份与结构，是打包和安装的必备配置。"
+    },
+    {
+      "id": "l3-25",
+      "level": 3,
+      "cat": "ai",
+      "type": "single",
+      "q": "AI 生成的代码「看起来没问题」却可能跑不通，最常见的原因是？",
+      "options": ["AI 完全不会写代码", "编造了不存在的 API 或忽略了运行环境", "代码一定被加密", "缺少注释"],
+      "answer": 1,
+      "explain": "模型可能凭空生成 API、版本不匹配或忽略环境限制，所以必须实际运行验证。"
+    },
+    {
+      "id": "l3-26",
+      "level": 3,
+      "cat": "ai",
+      "type": "single",
+      "q": "验证 AI 给出的技术答案，最可靠的做法是？",
+      "options": ["再问一遍 AI", "查官方文档并用小实验验证", "看回答长不长", "发到群里问别人"],
+      "answer": 1,
+      "explain": "以官方文档为准并做最小可运行实验，是把 AI 输出变成可信结论的唯一路径。"
+    },
+    {
+      "id": "l3-27",
+      "level": 3,
+      "cat": "ai",
+      "type": "single",
+      "q": "用 AI 生成代码时，减少返工的关键是？",
+      "options": ["一次性生成全部功能，绝不修改", "分步生成、明确约束并持续审阅", "不让 AI 看到需求", "只复制不运行"],
+      "answer": 1,
+      "explain": "把需求拆小、每步验证并持续审阅，才能控制 AI 输出质量。"
+    },
+    {
+      "id": "l3-28",
+      "level": 3,
+      "cat": "ai",
+      "type": "judge",
+      "q": "AI 编程助手能完全替代开发者做需求判断和最终质量把关。",
+      "answer": false,
+      "explain": "AI 是工具，需求取舍、边界判断和最终责任仍在开发者身上。"
+    },
+    {
+      "id": "l3-29",
+      "level": 3,
+      "cat": "ai",
+      "type": "single",
+      "q": "AI 辅助的项目里，最需要人类负责的是？",
+      "options": ["敲键盘的速度", "需求定义、取舍与最终验证", "调整字体颜色", "挑选显示器"],
+      "answer": 1,
+      "explain": "AI 能生成实现，但做什么、为什么做、是否可信，必须由人负责。"
+    },
+    {
+      "id": "l3-30",
+      "level": 3,
+      "cat": "ai",
+      "type": "single",
+      "q": "在 AI 协作中，「提示词注入（prompt injection）」通常指？",
+      "options": ["在输入中嵌入指令，诱导模型偏离原任务", "给提示词加密", "增加提示词长度", "使用中文写提示词"],
+      "answer": 0,
+      "explain": "攻击者把恶意指令藏在内容里，让模型忽略原有规则执行攻击者意图。"
+    }
+  ]
+}

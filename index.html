@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>蓝桥工作室 · 招新评测</title>
+  <meta name="description" content="蓝桥工作室招新评测：线上答题测试与 Vela 快应用 / Android 方向创造类考题。鼓励 vibecoding。">
+  <link rel="stylesheet" href="./quiz/style.css">
+  <style>
+    .btn { display: inline-block; text-decoration: none; text-align: center; }
+    .intro-title { margin: 0 0 10px; font-size: 1.15rem; }
+    .tracks { display: grid; gap: 10px; margin: 14px 0 4px; }
+    .track {
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      padding: 13px 15px;
+      background: #fbfdff;
+    }
+    .track b { color: var(--accent-deep); }
+    .track p { margin: 4px 0 0; font-size: 0.86rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="bg-decor" aria-hidden="true"></div>
+  <main class="app">
+    <header class="hero card">
+      <p class="eyebrow">BLUEBRIDGE STUDIO · 招新评测</p>
+      <h1>蓝桥工作室招新评测</h1>
+      <p class="lead">小米 Vela 快应用 · 普通 Android 应用 —— 两条独立评测线</p>
+    </header>
+
+    <section class="card">
+      <h2 class="section-title">线上答题测试</h2>
+      <p class="intro-title">编程与计算机基础术语知识，三关难度递进，<strong>题库全部公开</strong>。</p>
+      <ul class="rules">
+        <li>每关随机抽取 <strong>10 题</strong>，答对 <strong>6 题</strong>通关并解锁下一关；</li>
+        <li>答题后立即显示正确答案与解析，边测边学；</li>
+        <li>选项顺序随机打乱，但题目本身公开，欢迎提前学习。</li>
+      </ul>
+      <div class="actions">
+        <a class="btn btn-primary" href="./quiz/">开始答题 →</a>
+        <a class="btn btn-ghost" href="https://github.com/EstimateFaster/bluebridge-review" target="_blank" rel="noopener">GitHub 仓库</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 class="section-title">两条评测线</h2>
+      <div class="tracks">
+        <div class="track">
+          <b>Vela 快应用</b>
+          <p>小米 Vela OS / 快应用框架（JS + .ux）/ rpk 打包；小屏 UI、状态管理、性能与内存。</p>
+        </div>
+        <div class="track">
+          <b>Android 应用</b>
+          <p>Kotlin / Jetpack Compose（含 Java）；常规 App 的 UI、数据存储、生命周期与稳定性。</p>
+        </div>
+      </div>
+      <p class="meta">两条线独立出题、独立评分，不涉及跨端 / 跨设备通信类题目。</p>
+    </section>
+
+    <section class="card">
+      <h2 class="section-title">关于 vibecoding 与 AI</h2>
+      <p>我们鼓励 vibecoding：你可以、也应该使用 AI 工具完成作品。但我们更看重 <strong>你是否真的理解、能改、能讲清楚</strong>。</p>
+      <p class="meta">因此真正的考题会包含现场演示、追问与现场改动——这些是 AI 无法替你完成的部分。</p>
+    </section>
+
+    <footer class="foot">
+      <p>蓝桥工作室 · <a href="https://github.com/EstimateFaster/bluebridge-review" target="_blank" rel="noopener">题库与源码公开于 GitHub</a></p>
+    </footer>
+  </main>
+</body>
+</html>
