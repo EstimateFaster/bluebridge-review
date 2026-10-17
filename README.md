@@ -17,8 +17,7 @@
 - **难度已整体下调**：最高难度约为原第二关水平，题目重新分散到三关，梯度更平缓；
 - 开始前需要输入**昵称**；答题后立即显示正确答案与解析，边测边学；
 - 选项顺序随机打乱——背固定选项没有意义，但题目本身公开，欢迎提前学习；
-- 答题过程数据（每题作答时长等）仅用于评测分析，**不在页面上展示**；
-  数据如何采集/导出见 [`quiz/COLLECT.md`](quiz/COLLECT.md)；
+- 答题过程数据（每题作答时长等）只保存在测试者本机、**不在页面上展示**，也不会发送到任何服务器；回收方式见 [`quiz/COLLECT.md`](quiz/COLLECT.md)；
 - 题库文件：[`quiz/questions.json`](quiz/questions.json)（v2.0.0，90 题）；
 - 纯静态页面（HTML/CSS/原生 JS，无依赖），本地预览：`cd quiz && python3 -m http.server 8000`。
 
@@ -26,11 +25,11 @@
 
 Android 方向本轮暂缓，后续开放。
 
-| 题号 | 题目 | 考察重点 | 建议投入 |
-|---|---|---|---|
-| [题 1](tracks/vela/task-1-weather/) | 一屏挑战：手环天气单页排版 | UI 设计、信息层级、小屏适配 | 3–4 小时 |
-| [题 2](tracks/vela/task-2-restyle/) | 改版题：静态壳 + 三块新功能 | 自绘键盘、功能设计、UI、改版维护 | 6–8 小时 |
-| [题 3](tracks/vela/task-3-whack-a-mole/) | 完整 rpk：打地鼠小游戏 | 完整开发、多页路由、玩法与反馈 | 4–6 小时 |
+| 题号 | 题目 | 考察重点 |
+|---|---|---|
+| [题 1](tracks/vela/task-1-weather/) | 一屏挑战：手环天气单页排版 | UI 设计、信息层级、小屏适配 |
+| [题 2](tracks/vela/task-2-restyle/) | 改版题：静态壳 + 三块新功能 | 自绘键盘、功能设计、UI、改版维护 |
+| [题 3](tracks/vela/task-3-whack-a-mole/) | 完整 rpk：打地鼠小游戏 | 完整开发、多页路由、玩法与反馈 |
 
 - 题 1 / 题 3 可基于 [`tracks/vela/shared/starter/`](tracks/vela/shared/starter/) 极简脚手架开始；
 - 题 2 使用题目自带的静态壳工程 [`tracks/vela/task-2-restyle/starter/`](tracks/vela/task-2-restyle/starter/)（由「股市大亨」裁剪而来，包名 `com.bluebridge.review`，现金固定 80000）；
@@ -66,7 +65,7 @@ submissions/     # 候选人提交：submissions/<github-id>-<task>/
 2. 按评审方通知选择 Vela 题目（题 1 / 题 2 / 题 3）；
 3. 阅读对应题面，按题面要求完成并构建 `.rpk`；
 4. 在 `submissions/<github-id>-<task>/` 下提交源码、rpk、截图与 README；
-5. 参加约 30–40 分钟的现场 review：演示、讲思路、回答问题、**现场改一个小需求**。
+5. 参加现场 review：演示、讲思路、回答问题、**现场改一个小需求**。
 
 ## 说明
 

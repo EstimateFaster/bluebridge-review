@@ -8,10 +8,6 @@ const DATA_URL = 'questions.json';
 const STORAGE_KEY = 'bb-quiz-progress-v1';
 const NAME_KEY = 'bb-quiz-name';
 const COLLECT_KEY = 'bb-quiz-records-v1';
-const COLLECT_URL =
-  typeof window !== 'undefined' && typeof window.BB_COLLECT_URL === 'string'
-    ? window.BB_COLLECT_URL.trim()
-    : '';
 
 const state = {
   data: null,
@@ -180,26 +176,6 @@ function appendRecord(record) {
     localStorage.setItem(COLLECT_KEY, JSON.stringify(records));
   } catch (e) {
     /* 本地存储不可用时静默失败 */
-  }
-}
-
-function sendRecord(record) {
-  if (!COLLECT_URL) return;
-  try {
-    const body = JSON.stringify(record);
-    if (navigator.sendBeacon) {
-      navigator.sendBeacon(COLLECT_URL, body);
-      return;
-    }
-    fetch(COLLECT_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      keepalive: true,
-      headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
-      body,
-    }).catch(function () {});
-  } catch (e) {
-    /* 网络失败不影响答题 */
   }
 }
 
@@ -596,7 +572,6 @@ function finishLevel() {
 
   const record = buildRecord(s, { completed: true, quit: false, passed });
   appendRecord(record);
-  sendRecord(record);
 
   state.last = {
     level,
@@ -744,7 +719,6 @@ function quitQuiz() {
   if (session.answers.some(Boolean)) {
     const record = buildRecord(session, { completed: false, quit: true, passed: false });
     appendRecord(record);
-    sendRecord(record);
   }
   state.session = null;
   renderHome();
