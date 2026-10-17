@@ -1,0 +1,63 @@
+<template>
+  <div class="page">
+    <div class="topbar">
+      <div class="back-hit" onclick="back">
+        <image static class="back-icon" src="/common/icons/arrow-left.png"></image>
+      </div>
+      <text class="top-title">设置</text>
+    </div>
+    <div class="content-layer flow-content-layer">
+      <scroll class="settings-list" scroll-y="true" scroll-x="false">
+        <div class="setting-tile" onclick="openAbout">
+          <image static class="setting-icon" src="/common/icons/user-round.png"></image>
+          <text class="setting-title">关于</text>
+          <image static class="tile-next-icon" src="/common/icons/chevron-right.png"></image>
+        </div>
+        <div class="setting-tile" onclick="showCopyright">
+          <image static class="setting-icon" src="/common/icons/info.png"></image>
+          <text class="setting-title">版权声明</text>
+          <image static class="tile-next-icon" src="/common/icons/chevron-right.png"></image>
+        </div>
+        <div class="setting-tile">
+          <image static class="setting-icon" src="/common/icons/settings.png"></image>
+          <text class="setting-title">版本</text>
+          <text class="setting-value">0.1.0</text>
+        </div>
+        <div class="setting-tile">
+          <image static class="setting-icon" src="/common/icons/info.png"></image>
+          <text class="setting-title">数据说明</text>
+          <text class="setting-value">虚构演示</text>
+        </div>
+        <text class="settings-note">蓝桥工作室 · 招新评测基底</text>
+      </scroll>
+    </div>
+  </div>
+</template>
+<script>
+import router from "@system.router"
+import prompt from "@system.prompt"
+export default {
+  openAbout() {
+    router.push({ uri: "/pages/about" })
+  },
+  showCopyright() {
+    prompt.showToast({
+      message: "© 蓝桥工作室 · 仅供招新评测使用",
+      duration: 2500
+    })
+  },
+  back() {
+    router.back()
+  }
+}
+</script>
+<style>
+@import "../../common/theme.css";
+.settings-list { width: 336px; height: 408px; padding: 8px 8px 24px 8px; flex-direction: column; background-color: #000000; }
+.setting-tile { width: 320px; height: 84px; margin-bottom: 9px; padding: 12px 16px; border-width: 1px; border-color: #555a5f; border-radius: 24px; flex-direction: row; align-items: center; background-color: #191c1e; }
+.setting-icon { width: 46px; height: 46px; margin-right: 14px; object-fit: contain; }
+.setting-title { flex: 1; color: #ffffff; font-size: 27px; font-weight: bold; lines: 1; }
+.setting-value { color: #a0a0a0; font-size: 21px; font-weight: bold; lines: 1; }
+.tile-next-icon { width: 22px; height: 28px; object-fit: contain; opacity: 0.72; }
+.settings-note { width: 320px; height: 30px; margin-top: 14px; color: #636366; font-size: 15px; line-height: 30px; text-align: center; }
+</style>

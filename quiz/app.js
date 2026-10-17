@@ -6,12 +6,20 @@
 
 const DATA_URL = 'questions.json';
 const STORAGE_KEY = 'bb-quiz-progress-v1';
+const NAME_KEY = 'bb-quiz-name';
+const COLLECT_KEY = 'bb-quiz-records-v1';
+const COLLECT_URL =
+  typeof window !== 'undefined' && typeof window.BB_COLLECT_URL === 'string'
+    ? window.BB_COLLECT_URL.trim()
+    : '';
 
 const state = {
   data: null,
   progress: loadProgress(),
+  nickname: loadName(),
   session: null,
   last: null,
+  pendingStart: null,
   toastTimer: null,
 };
 
@@ -95,7 +103,246 @@ function isUnlocked(index) {
   return levelPassed(state.data.levels[index - 1]);
 }
 
-/* ---------------- 视图切换 / 轻提示 ---------------- */
+/* ---------------- 测试者身份 ---------------- */
+
+function loadName() {
+  try {
+    return (localStorage.getItem(NAME_KEY) || '').trim();
+  } catch (e) {
+    return '';
+  }
+}
+
+function saveName(name) {
+  try {
+    if (name) localStorage.setItem(NAME_KEY, name);
+    else localStorage.removeItem(NAME_KEY);
+  } catch (e) {
+    /* ignore */
+  }
+}
+
+/* ---------------- 答题数据采集（测试者不可见） ---------------- */
+
+function makeSessionId() {
+  try {
+    if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+      return window.crypto.randomUUID();
+    }
+  } catch (e) {
+    /* ignore */
+  }
+  return 's-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
+}
+
+function sessionMeta() {
+  const nav = window.navigator || {};
+  const screenInfo = window.screen || {};
+  return {
+    userAgent: nav.userAgent || '',
+    language: nav.language || '',
+    timezone: (function () {
+      try {
+        return Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+      } catch (e) {
+        return '';
+      }
+    })(),
+    screen: {
+      width: screenInfo.width || 0,
+      height: screenInfo.height || 0,
+      dpr: window.devicePixelRatio || 1,
+    },
+    viewport: {
+      width: window.innerWidth || 0,
+      height: window.innerHeight || 0,
+    },
+    referrer: document.referrer || '',
+    url: location.href,
+  };
+}
+
+function getRecords() {
+  try {
+    const raw = localStorage.getItem(COLLECT_KEY);
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (e) {
+    return [];
+  }
+}
+
+function appendRecord(record) {
+  try {
+    const records = getRecords();
+    records.push(record);
+    if (records.length > 200) records.splice(0, records.length - 200);
+    localStorage.setItem(COLLECT_KEY, JSON.stringify(records));
+  } catch (e) {
+    /* 本地存储不可用时静默失败 */
+  }
+}
+
+function sendRecord(record) {
+  if (!COLLECT_URL) return;
+  try {
+    const body = JSON.stringify(record);
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(COLLECT_URL, body);
+      return;
+    }
+    fetch(COLLECT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      keepalive: true,
+      headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+      body,
+    }).catch(function () {});
+  } catch (e) {
+    /* 网络失败不影响答题 */
+  }
+}
+
+function buildRecord(session, extra) {
+  const answers = session.answers;
+  const answeredCount = answers.filter(function (a) {
+    return Boolean(a);
+  }).length;
+  const score = answers.filter(function (a) {
+    return a && a.correct;
+  }).length;
+  const now = Date.now();
+  return Object.assign(
+    {
+      schema: 'bb-quiz/telemetry/v1',
+      quizVersion: (state.data && state.data.meta && state.data.meta.version) || '',
+      sessionId: session.sessionId,
+      nickname: session.nickname,
+      level: { id: session.level.id, name: session.level.name },
+      startedAt: new Date(session.startedAt).toISOString(),
+      finishedAt: new Date(now).toISOString(),
+      elapsedMs: now - session.startedAt,
+      answeredCount,
+      total: session.questions.length,
+      score,
+      passLine: passLine(session.level),
+      meta: sessionMeta(),
+      questions: session.questions.map(function (question, index) {
+        const answer = answers[index];
+        return {
+          index,
+          id: question.id,
+          level: question.level,
+          cat: question.cat,
+          type: question.type,
+          optionCount: question.options.length,
+          options: question.options.map(function (option) {
+            return option.text;
+          }),
+          chosenIndex: answer ? answer.chosenIndex : null,
+          chosenText: answer ? answer.chosenText : null,
+          correctIndex: answer ? answer.correctIndex : null,
+          correct: answer ? answer.correct : null,
+          timeMs: answer ? answer.timeMs : null,
+          feedbackMs: answer && typeof answer.feedbackMs === 'number' ? answer.feedbackMs : null,
+        };
+      }),
+    },
+    extra || {}
+  );
+}
+
+function downloadRecords() {
+  const payload = {
+    exportedAt: new Date().toISOString(),
+    currentNickname: state.nickname || '',
+    records: getRecords(),
+  };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement('a');
+  anchor.href = url;
+  anchor.download = 'bb-quiz-records-' + Date.now() + '.json';
+  document.body.appendChild(anchor);
+  anchor.click();
+  anchor.remove();
+  setTimeout(function () {
+    URL.revokeObjectURL(url);
+  }, 1000);
+}
+
+/* ---------------- 昵称门 ---------------- */
+
+function openNameGate() {
+  const gate = $('name-gate');
+  gate.classList.remove('hidden');
+  $('name-input').value = state.nickname || '';
+  $('name-error').classList.add('hidden');
+  setTimeout(function () {
+    $('name-input').focus();
+  }, 60);
+}
+
+function closeNameGate() {
+  $('name-gate').classList.add('hidden');
+  state.pendingStart = null;
+  $('name-error').classList.add('hidden');
+}
+
+function showNameError(message) {
+  const error = $('name-error');
+  error.textContent = message;
+  error.classList.remove('hidden');
+}
+
+function confirmNameGate() {
+  const raw = ($('name-input').value || '').trim();
+  if (!raw) {
+    showNameError('请输入昵称后再开始');
+    return;
+  }
+  if (raw.length > 16) {
+    showNameError('昵称最长 16 个字符');
+    return;
+  }
+  if (/[\u0000-\u001f\u007f]/.test(raw)) {
+    showNameError('昵称包含非法字符');
+    return;
+  }
+  state.nickname = raw;
+  saveName(raw);
+  const action = state.pendingStart;
+  state.pendingStart = null;
+  $('name-gate').classList.add('hidden');
+  $('name-error').classList.add('hidden');
+  renderHome();
+  if (typeof action === 'function') action();
+}
+
+function withNickname(action) {
+  if (state.nickname) {
+    action();
+    return;
+  }
+  state.pendingStart = action;
+  openNameGate();
+}
+
+function switchTestee() {
+  if (!window.confirm('切换测试者会清空当前答题进度（已提交的答题记录会保留）。确定切换吗？')) {
+    return;
+  }
+  state.nickname = '';
+  saveName('');
+  state.progress = { best: {} };
+  state.session = null;
+  state.last = null;
+  saveProgress();
+  renderHome();
+  show('home');
+  toast('已切换测试者，请重新输入昵称');
+  openNameGate();
+}
 
 function show(view) {
   ['home', 'quiz', 'result'].forEach((v) => {
@@ -130,6 +377,7 @@ function renderHome() {
   const total = state.data.questions.length;
   $('bank-meta').textContent =
     `题库 v${meta.version || '1.0.0'} · 共 ${total} 题 · 更新于 ${meta.updated || '—'}`;
+  $('current-name').textContent = state.nickname || '未登录';
 
   const wrap = $('level-cards');
   wrap.textContent = '';
@@ -158,7 +406,7 @@ function renderHome() {
 
     card.addEventListener('click', () => {
       if (unlocked) {
-        startLevel(level.id);
+        withNickname(() => startLevel(level.id));
       } else {
         toast('先通过上一关，再来挑战 🙌');
       }
@@ -218,6 +466,10 @@ function startLevel(levelId) {
     index: 0,
     answers: [],
     startTime: Date.now(),
+    startedAt: Date.now(),
+    sessionId: makeSessionId(),
+    nickname: state.nickname,
+    questionStartAt: Date.now(),
   };
 
   renderQuestion();
@@ -232,7 +484,7 @@ function renderQuestion() {
   const question = s.questions[s.index];
   if (!question) return;
 
-  $('quiz-level-name').textContent = s.level.name;
+  s.questionStartAt = Date.now();
   $('quiz-progress-text').textContent = `第 ${s.index + 1} / ${s.questions.length} 题`;
   $('quiz-progress-bar').style.width = `${(s.index / s.questions.length) * 100}%`;
 
@@ -277,6 +529,7 @@ function answer(choice) {
   const correctIndex = question.options.findIndex((o) => o.correct);
   const isCorrect = choice === correctIndex;
   const chosen = question.options[choice];
+  const answeredAt = Date.now();
 
   s.answers[s.index] = {
     question,
@@ -285,6 +538,9 @@ function answer(choice) {
     correctIndex,
     correctText: question.options[correctIndex].text,
     correct: isCorrect,
+    timeMs: Math.max(0, answeredAt - (s.questionStartAt || answeredAt)),
+    answeredAt,
+    feedbackMs: null,
   };
 
   const buttons = Array.from($('q-options').children);
@@ -307,6 +563,12 @@ function goNext() {
   const s = state.session;
   if (!s) return;
   if (!s.answers[s.index]) return;
+
+  const current = s.answers[s.index];
+  if (typeof current.feedbackMs !== 'number' || current.feedbackMs === null) {
+    current.feedbackMs = Math.max(0, Date.now() - (current.answeredAt || Date.now()));
+  }
+
   if (s.index >= s.questions.length - 1) {
     finishLevel();
     return;
@@ -332,7 +594,19 @@ function finishLevel() {
   }
   saveProgress();
 
-  state.last = { level, score, total, passed, elapsed, session: s };
+  const record = buildRecord(s, { completed: true, quit: false, passed });
+  appendRecord(record);
+  sendRecord(record);
+
+  state.last = {
+    level,
+    score,
+    total,
+    passed,
+    elapsed,
+    session: s,
+    nickname: s.nickname,
+  };
   renderResult();
   show('result');
 }
@@ -350,6 +624,7 @@ function renderResult() {
     `conic-gradient(${ringColor} 0%, ${ringColor} ${percent}%, #e2e8f0 ${percent}%)`;
 
   $('result-level').textContent = `${level.name} · 本关结果`;
+  $('result-name').innerHTML = `测试者：<strong>${format(last.nickname || state.nickname || '匿名')}</strong>`;
   $('result-score').textContent = String(score);
   $('result-total').textContent = `/ ${total} 题`;
   $('result-time').textContent = `用时 ${elapsedText(elapsed)} · ${new Date().toLocaleString('zh-CN')}`;
@@ -463,11 +738,17 @@ function quitQuiz() {
     show('home');
     return;
   }
-  if (window.confirm('退出后本关进度不会保存，确定退出吗？')) {
-    state.session = null;
-    renderHome();
-    show('home');
+  if (!window.confirm('退出后本关进度不会保存，确定退出吗？')) return;
+
+  const session = state.session;
+  if (session.answers.some(Boolean)) {
+    const record = buildRecord(session, { completed: false, quit: true, passed: false });
+    appendRecord(record);
+    sendRecord(record);
   }
+  state.session = null;
+  renderHome();
+  show('home');
 }
 
 function resetProgress() {
@@ -483,12 +764,28 @@ function resetProgress() {
 /* ---------------- 事件绑定 / 启动 ---------------- */
 
 function bindEvents() {
-  $('btn-start').addEventListener('click', startNext);
+  $('btn-start').addEventListener('click', () => withNickname(startNext));
   $('btn-reset').addEventListener('click', resetProgress);
   $('btn-quit').addEventListener('click', quitQuiz);
   $('btn-next').addEventListener('click', goNext);
+  $('btn-switch-name').addEventListener('click', switchTestee);
+  $('btn-name-confirm').addEventListener('click', confirmNameGate);
+  $('btn-name-cancel').addEventListener('click', closeNameGate);
+  $('name-input').addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      confirmNameGate();
+    }
+  });
+  $('name-gate').addEventListener('click', (event) => {
+    if (event.target === $('name-gate')) closeNameGate();
+  });
 
   document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !$('name-gate').classList.contains('hidden')) {
+      closeNameGate();
+      return;
+    }
     if ($('view-quiz').classList.contains('hidden')) return;
     const s = state.session;
     if (!s) return;
@@ -530,6 +827,20 @@ async function init() {
 
   renderHome();
   bindEvents();
+}
+
+/* ---------------- 隐藏导出（不展示给测试者） ---------------- */
+/*
+   使用方式（详见 COLLECT.md）：
+   1) 测试者浏览器控制台执行 window.BBQuizExport()
+   2) 或访问 quiz/ 页面并追加 #export（如 .../quiz/#export）
+   导出的 JSON 包含本机所有答题记录，供现场评审回收。
+*/
+window.BBQuizExport = downloadRecords;
+if (location.hash === '#export') {
+  window.addEventListener('load', () => {
+    setTimeout(downloadRecords, 800);
+  });
 }
 
 init();

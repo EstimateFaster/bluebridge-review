@@ -1,0 +1,36 @@
+<template>
+  <div class="page">
+    <text class="title">Vela 评测 Starter</text>
+    <text class="hint">从这里开始你的作品</text>
+  </div>
+</template>
+
+<style>
+.page {
+  width: 336px;
+  height: 480px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #000000;
+}
+
+.title {
+  color: #ffffff;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.hint {
+  margin-top: 12px;
+  color: #a0a0a0;
+  font-size: 20px;
+}
+</style>
+
+<script>
+export default {
+  private: {},
+  onInit() {}
+}
+</script>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>蓝桥工作室 · 招新评测</title>
-  <meta name="description" content="蓝桥工作室招新评测：线上答题测试与 Vela 快应用 / Android 方向创造类考题。鼓励 vibecoding。">
+  <meta name="description" content="蓝桥工作室招新评测：线上答题测试与 Vela 快应用改版/开发考题。鼓励 vibecoding。">
   <link rel="stylesheet" href="./quiz/style.css">
   <style>
     .btn { display: inline-block; text-decoration: none; text-align: center; }
@@ -15,9 +15,15 @@
       border-radius: 13px;
       padding: 13px 15px;
       background: #fbfdff;
+      color: inherit;
+      text-decoration: none;
+      display: block;
+      transition: border-color .15s ease, transform .15s ease;
     }
+    .track:hover { border-color: #bfdbfe; transform: translateY(-1px); }
     .track b { color: var(--accent-deep); }
     .track p { margin: 4px 0 0; font-size: 0.86rem; color: var(--muted); }
+    .track .tag-line { font-size: 0.76rem; color: var(--muted); }
   </style>
 </head>
 <body>
@@ -26,15 +32,16 @@
     <header class="hero card">
       <p class="eyebrow">BLUEBRIDGE STUDIO · 招新评测</p>
       <h1>蓝桥工作室招新评测</h1>
-      <p class="lead">小米 Vela 快应用 · 普通 Android 应用 —— 两条独立评测线</p>
+      <p class="lead">Vela 快应用方向 · 线上答题 + 实操改版 + 完整开发</p>
     </header>
 
     <section class="card">
-      <h2 class="section-title">线上答题测试</h2>
-      <p class="intro-title">编程与计算机基础术语知识，三关难度递进，<strong>题库全部公开</strong>。</p>
+      <h2 class="section-title">线上答题测试 · v2.0</h2>
+      <p class="intro-title">编程与计算机基础术语知识，三关递进，<strong>题库全部公开</strong>。</p>
       <ul class="rules">
         <li>每关随机抽取 <strong>10 题</strong>，答对 <strong>6 题</strong>通关并解锁下一关；</li>
-        <li>答题后立即显示正确答案与解析，边测边学；</li>
+        <li>难度已整体下调：最高难度约为原第二关水平；</li>
+        <li>开始前需要输入昵称；答题后立即显示正确答案与解析；</li>
         <li>选项顺序随机打乱，但题目本身公开，欢迎提前学习。</li>
       </ul>
       <div class="actions">
@@ -44,18 +51,25 @@
     </section>
 
     <section class="card">
-      <h2 class="section-title">两条评测线</h2>
+      <h2 class="section-title">本轮 Vela 快应用考题</h2>
       <div class="tracks">
-        <div class="track">
-          <b>Vela 快应用</b>
-          <p>小米 Vela OS / 快应用框架（JS + .ux）/ rpk 打包；小屏 UI、状态管理、性能与内存。</p>
-        </div>
-        <div class="track">
-          <b>Android 应用</b>
-          <p>Kotlin / Jetpack Compose（含 Java）；常规 App 的 UI、数据存储、生命周期与稳定性。</p>
-        </div>
+        <a class="track" href="https://github.com/EstimateFaster/bluebridge-review/tree/main/tracks/vela/task-1-weather" target="_blank" rel="noopener">
+          <b>题 1 · 一屏挑战：手环天气</b>
+          <p>336×480 单页排版，9 项天气信息，考 UI 设计与信息层级。</p>
+          <p class="tag-line">建议 3–4 小时 · ★★</p>
+        </a>
+        <a class="track" href="https://github.com/EstimateFaster/bluebridge-review/tree/main/tracks/vela/task-2-restyle" target="_blank" rel="noopener">
+          <b>题 2 · 改版题：静态壳 + 三块新功能</b>
+          <p>在裁剪后的静态壳上新增礼包码（自绘键盘）、颜色转换、每日任务 UI。</p>
+          <p class="tag-line">建议 6–8 小时 · ★★★</p>
+        </a>
+        <a class="track" href="https://github.com/EstimateFaster/bluebridge-review/tree/main/tracks/vela/task-3-whack-a-mole" target="_blank" rel="noopener">
+          <b>题 3 · 完整 rpk：打地鼠</b>
+          <p>单关卡 + 多页路由（主页/关于/游戏），考完整开发与玩法反馈。</p>
+          <p class="tag-line">建议 4–6 小时 · ★★★</p>
+        </a>
       </div>
-      <p class="meta">两条线独立出题、独立评分，不涉及跨端 / 跨设备通信类题目。</p>
+      <p class="meta">Android 方向本轮暂缓，后续开放。</p>
     </section>
 
     <section class="card">
@@ -65,7 +79,7 @@
     </section>
 
     <footer class="foot">
-      <p>蓝桥工作室 · <a href="https://github.com/EstimateFaster/bluebridge-review" target="_blank" rel="noopener">题库与源码公开于 GitHub</a></p>
+      <p>蓝桥工作室 · <a href="https://github.com/EstimateFaster/bluebridge-review" target="_blank" rel="noopener">题库、题面与源码公开于 GitHub</a></p>
     </footer>
   </main>
 </body>

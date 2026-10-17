@@ -29,6 +29,11 @@
           <li>进度保存在本地浏览器，换设备或清除缓存会重置。</li>
         </ul>
 
+        <div class="testee-row">
+          <span>当前测试者：<strong id="current-name">未登录</strong></span>
+          <button id="btn-switch-name" class="link-btn" type="button">切换测试者</button>
+        </div>
+
         <div id="level-cards" class="level-cards"></div>
 
         <div class="actions">
@@ -78,6 +83,7 @@
     <section id="view-result" class="view hidden">
       <article class="card result-card">
         <p id="result-level" class="eyebrow"></p>
+        <p id="result-name" class="result-name"></p>
         <div id="result-ring" class="ring">
           <div class="ring-inner">
             <strong id="result-score"></strong>
@@ -103,7 +109,23 @@
     </section>
   </main>
 
+  <div id="name-gate" class="gate hidden" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+    <div class="gate-card">
+      <p class="eyebrow">开始前</p>
+      <h2 id="gate-title">输入你的昵称</h2>
+      <p class="gate-desc">昵称会显示在结果凭证上，并用于本次评测记录。</p>
+      <input id="name-input" class="name-input" type="text" maxlength="16"
+             placeholder="例如：小明 / 夜航星" autocomplete="off" spellcheck="false">
+      <p id="name-error" class="name-error hidden"></p>
+      <div class="gate-actions">
+        <button id="btn-name-cancel" class="btn btn-ghost" type="button">取消</button>
+        <button id="btn-name-confirm" class="btn btn-primary" type="button">开始测试</button>
+      </div>
+    </div>
+  </div>
+
   <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+  <script src="collect.config.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

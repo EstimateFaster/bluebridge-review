@@ -1,0 +1,19 @@
+{
+  "name": "bluebridge-review-starter",
+  "version": "0.1.0",
+  "private": true,
+  "description": "蓝桥工作室 Vela 快应用招新改版题 · 静态壳工程",
+  "author": "蓝桥工作室",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=20.19"
+  },
+  "scripts": {
+    "build": "node scripts/build.cjs"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.29.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.28.0",
+    "aiot-toolkit": "^2.0.5"
+  }
+}

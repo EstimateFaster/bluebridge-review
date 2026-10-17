@@ -1,0 +1,59 @@
+{
+  "package": "com.bluebridge.review",
+  "name": "股市大亨（评测版）",
+  "versionName": "0.1.0",
+  "versionCode": 1,
+  "minAPILevel": 2,
+  "minPlatformVersion": 1000,
+  "icon": "/common/app-logo-v4.png",
+  "deviceTypeList": [
+    "watch"
+  ],
+  "features": [
+    {
+      "name": "system.router"
+    },
+    {
+      "name": "system.prompt"
+    },
+    {
+      "name": "system.storage"
+    },
+    {
+      "name": "system.vibrator"
+    }
+  ],
+  "config": {
+    "logLevel": "warn",
+    "designWidth": 336
+  },
+  "display": {
+    "backgroundColor": "#000000"
+  },
+  "router": {
+    "entry": "pages/splash",
+    "pages": {
+      "pages/splash": {
+        "component": "splash"
+      },
+      "pages/home": {
+        "component": "home"
+      },
+      "pages/market": {
+        "component": "market"
+      },
+      "pages/stock-detail": {
+        "component": "stock-detail"
+      },
+      "pages/portfolio": {
+        "component": "portfolio"
+      },
+      "pages/settings": {
+        "component": "settings"
+      },
+      "pages/about": {
+        "component": "about"
+      }
+    }
+  }
+}

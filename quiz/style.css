@@ -643,6 +643,116 @@ h2 { font-weight: 700; }
   to   { opacity: 1; transform: translate(-50%, 0); }
 }
 
+/* ---------- 测试者 / 昵称门 ---------- */
+
+.testee-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 0 2px 14px;
+  font-size: 0.86rem;
+  color: #475569;
+}
+
+.testee-row strong { color: var(--accent-deep); }
+
+.link-btn {
+  appearance: none;
+  border: 0;
+  background: none;
+  padding: 2px 4px;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 0.82rem;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.link-btn:hover { color: var(--accent-deep); }
+
+.link-btn:focus-visible {
+  outline: 3px solid #93c5fd;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.gate {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: fade-in 0.2s ease both;
+}
+
+.gate-card {
+  width: min(100%, 380px);
+  padding: 26px 24px;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.28);
+  animation: rise 0.28s ease both;
+}
+
+.gate-card .eyebrow { color: var(--accent); opacity: 1; margin-bottom: 4px; }
+.gate-card h2 { margin: 0 0 6px; font-size: 1.35rem; }
+
+.gate-desc {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.name-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.name-input:focus {
+  border-color: #93c5fd;
+  box-shadow: 0 0 0 4px rgba(147, 197, 253, 0.25);
+}
+
+.name-error {
+  margin: 8px 0 0;
+  color: var(--bad);
+  font-size: 0.82rem;
+}
+
+.gate-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.result-name {
+  margin: 0 0 2px;
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+
+.result-name strong { color: var(--accent-deep); }
+
 /* ---------- 响应式 ---------- */
 
 @media (min-width: 640px) {
