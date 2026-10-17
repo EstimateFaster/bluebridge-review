@@ -49,8 +49,8 @@ export default {
 .app-copy { flex: 1; margin-left: 13px; flex-direction: column; }
 .app-name { color: #ffffff; font-size: 29px; font-weight: bold; lines: 1; }
 .app-version { margin-top: 5px; color: #a0a0a0; font-size: 20px; }
-.studio-card { width: 320px; height: 180px; margin-top: 8px; padding: 14px; border-radius: 22px; flex-direction: column; background-color: #171717; }
-.studio-label { width: 292px; height: 44px; color: #ffd400; font-size: 18px; line-height: 22px; font-weight: bold; lines: 2; }
+.studio-card { width: 320px; height: 160px; margin-top: 8px; padding: 14px; border-radius: 22px; flex-direction: column; background-color: #171717; }
+.studio-label { width: 292px; height: 24px; color: #ffd400; font-size: 16px; line-height: 24px; font-weight: bold; lines: 1; }
 .studio-title { width: 292px; height: 30px; margin-top: 4px; color: #ffffff; font-size: 24px; line-height: 30px; font-weight: bold; lines: 1; }
 .studio-text { width: 292px; height: 48px; margin-top: 4px; color: #a0a0a0; font-size: 17px; line-height: 24px; lines: 2; }
 .data-card { width: 320px; height: 118px; margin-top: 8px; padding: 14px; border-radius: 22px; flex-direction: column; background-color: #171717; }

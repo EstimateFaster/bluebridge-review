@@ -1,6 +1,8 @@
-node_modules/
+node_modules
 dist/
 build/
+.temp_starter/
 sign/
 *.rpk
+*.log
 .DS_Store
