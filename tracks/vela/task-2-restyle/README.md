@@ -90,6 +90,7 @@
 ## 环境
 
 - 用 AIoT-IDE / Vela 开发者工具打开 [`starter/`](starter/)，或按 `starter/README.md` 使用 `aiot-toolkit` 构建；
+- starter 的 manifest 已预置 `system.storage` 与 `system.vibrator`，颜色持久化、按键振动等可直接使用；
 - 设计基准 **336 × 480**，模拟器或真机验证均可。
 
 ## 提交

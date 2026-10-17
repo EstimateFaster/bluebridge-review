@@ -98,8 +98,8 @@ starter/
 - **逻辑**：`src/game/`、`src/store/`、`src/utils/` 等游戏引擎、存档服务与交易/结算逻辑全部删除。
 - **数据**：原股票、事件、任务、成就、答题等动态数据删除，只保留 `src/data/reviewStatic.js`。
 - **入口**：收盘、每日任务、猜猜看、消息、成就、存档管理、礼品码、颜色转换、教程、更新日志等入口全部删除。
-- **资产**：只保留保留页面实际引用的图片与图标；其余横幅、卡片、截图、音频、字体全部删除。
-- **feature / 权限**：只保留界面与扩展功能所需的最小集合（`system.router`、`system.prompt`、`system.storage`、`system.vibrator`）。
+- **资产**：只保留页面实际引用的图片与图标；其余横幅、卡片、截图、音频、字体全部删除。
+- **feature / 权限**：保留 `system.router`、`system.prompt`，并预置 `system.storage`、`system.vibrator` 供新增功能（持久化/振动反馈）直接使用。
 
 ## 候选人任务
 
