@@ -1,0 +1,37 @@
+/**manifest**/
+
+<script>
+import storage from "@system.storage"
+import { THEME_STORAGE_KEY, normalizeState, buildStyles, DEFAULT_STYLES } from "./common/theme.js"
+
+function parseState(value) {
+  if (!value) return normalizeState(null)
+  try {
+    return normalizeState(JSON.parse(value))
+  } catch (e) {
+    return normalizeState(null)
+  }
+}
+
+export default {
+  data: {
+    themeState: null,
+    themeStyles: DEFAULT_STYLES
+  },
+  onCreate() {
+    const that = this
+    storage.get({
+      key: THEME_STORAGE_KEY,
+      success: function (value) {
+        that.themeState = parseState(value)
+        that.themeStyles = buildStyles(that.themeState)
+      },
+      fail: function () {
+        that.themeState = normalizeState(null)
+        that.themeStyles = buildStyles(that.themeState)
+      }
+    })
+  },
+  onDestroy() {}
+}
+</script>

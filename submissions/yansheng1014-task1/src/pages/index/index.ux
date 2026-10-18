@@ -1,0 +1,191 @@
+<template>
+  <div class="page">
+    <image class="bg" src="/common/weather/bg-sky.png"></image>
+    <div class="chrome">
+      <div class="hbtn" onclick="onExit"><image class="hicon" src="/common/weather/hdr-back.png"></image></div>
+      <div class="hbtn" onclick="onMore"><div class="dots3"><div class="d3"></div><div class="d3"></div><div class="d3"></div></div></div>
+    </div>
+    <swiper class="pager" vertical="true" indicator="false" loop="false" index="{{pageIndex}}" onchange="onPageChange">
+      <div class="sec sec1">
+        <div class="s1city"><image class="pin" src="/common/weather/m-location.png"></image><text class="city">北京 · 朝阳</text></div>
+        <div class="s1hero">
+          <div class="temprow"><text class="tnum">23</text><text class="tdeg">°</text></div>
+          <div class="condrow"><image class="wicon" src="/common/weather/w-partly@2x.png"></image><div class="condcol"><text class="cond">多云</text><text class="sub">体感 22°</text></div></div>
+        </div>
+        <div class="hint"><div class="hintdot"></div><text class="hinttxt">周六有雨 · 记得带伞</text></div>
+        <text class="swipe">上滑 · 未来 5 小时</text>
+      </div>
+      <div class="sec sec2">
+        <div class="title"><div class="bar"></div><text class="titletxt">未来 5 小时</text></div>
+        <div class="hlist">
+          <div class="hrow" for="{{hours}}" tid="h"><text class="htime">{{$item.time}}</text><div class="hright"><image class="hicon" src="{{$item.icon}}"></image><text class="htemp">{{$item.temp}}°</text></div></div>
+        </div>
+        <text class="swipe">上滑 · 天气详情</text>
+      </div>
+      <div class="sec sec3">
+        <div class="title"><div class="bar"></div><text class="titletxt">天气详情</text></div>
+        <div class="gridwrap">
+          <div class="card"><image class="cicon" src="/common/weather/m-humidity.png"></image><text class="clabel">湿度</text><text class="cvalue">62%</text></div>
+          <div class="card"><image class="cicon" src="/common/weather/m-aqi.png"></image><text class="clabel">空气</text><text class="cvalue cgood">42 良</text></div>
+          <div class="card"><image class="cicon" src="/common/weather/m-uv.png"></image><text class="clabel">紫外线</text><text class="cvalue cwarn">3 中等</text></div>
+          <div class="card"><image class="cicon" src="/common/weather/m-wind.png"></image><text class="clabel">风向</text><text class="cvalue csm">东南 2级</text></div>
+        </div>
+        <text class="swipe">上滑 · 未来 7 天</text>
+      </div>
+      <div class="sec sec4">
+        <div class="title"><div class="bar"></div><text class="titletxt">未来 7 天</text></div>
+        <div class="dlist">
+          <div class="drow" for="{{days}}" tid="d"><text class="dname">{{$item.day}}</text><image class="dicon" src="{{$item.icon}}"></image><text class="dhigh">{{$item.high}}°</text><text class="dlow">{{$item.low}}°</text></div>
+        </div>
+        <text class="swipe">上滑 · 日出日落</text>
+      </div>
+      <div class="sec sec5">
+        <div class="title"><div class="bar"></div><text class="titletxt">日出日落</text></div>
+        <div class="s5wrap">
+          <image class="arc" src="/common/weather/arc-sun.png"></image>
+          <div class="arclabels"><text class="arclabel">日出 06:28</text><text class="arclabel">日落 17:26</text></div>
+          <text class="nowtext">现在 14:20 · 已过 72%</text>
+          <text class="daylentext">今日昼长 10 时 58 分</text>
+        </div>
+        <text class="swipe">下滑返回 · 实时天气</text>
+      </div>
+    </swiper>
+    <div class="dev-mask" if="{{showDev}}" onclick="onCloseDev">
+      <div class="dev-card" onclick="stopProp">
+        <div class="dev-head"><text class="dev-title">开发者信息</text><div class="dev-close" onclick="onCloseDev"><text class="dev-close-x">×</text></div></div>
+        <div class="dev-row"><text class="dev-k">包名</text><text class="dev-v">com.bluebridge.review.weather</text></div>
+        <div class="dev-row"><text class="dev-k">版本</text><text class="dev-v">2.1.0 (3)</text></div>
+        <div class="dev-row"><text class="dev-k">设备</text><text class="dev-v">{{model}}</text></div>
+        <div class="dev-row"><text class="dev-k">系统版本</text><text class="dev-v">{{apiLevel}}</text></div>
+        <div class="dev-row"><text class="dev-k">屏幕</text><text class="dev-v">336 × 480 / designWidth 336</text></div>
+        <div class="dev-row"><text class="dev-k">交互</text><text class="dev-v">单页 · 上下滑动 5 屏</text></div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style>
+.page { width: 336px; height: 480px; background-color: #0a1424; position: relative; }
+.bg { position: absolute; left: 0; top: 0; width: 336px; height: 480px; }
+.chrome { position: absolute; left: 14px; top: 10px; width: 308px; height: 38px; flex-direction: row; justify-content: space-between; align-items: center; }
+.hbtn { width: 38px; height: 38px; border-radius: 13px; background-color: rgba(255, 255, 255, 0.12); border-width: 1px; border-color: rgba(255, 255, 255, 0.12); align-items: center; justify-content: center; }
+.hicon { width: 26px; height: 26px; }
+.dots3 { flex-direction: row; align-items: center; justify-content: center; }
+.d3 { width: 5px; height: 5px; border-radius: 3px; background-color: #ffffff; margin-left: 2px; margin-right: 2px; }
+.pager { position: absolute; left: 0; top: 0; width: 336px; height: 480px; }
+.sec { width: 336px; height: 480px; padding-left: 24px; padding-right: 24px; padding-top: 54px; padding-bottom: 16px; flex-direction: column; }
+.s1city { height: 32px; flex-direction: row; align-items: center; }
+.pin { width: 22px; height: 22px; margin-right: 8px; }
+.city { font-size: 26px; line-height: 32px; font-weight: bold; color: #dbe6f5; }
+.s1hero { height: 282px; flex-direction: column; align-items: center; justify-content: center; }
+.temprow { flex-direction: row; align-items: flex-start; }
+.tnum { font-size: 146px; line-height: 146px; font-weight: bold; color: #ffffff; }
+.tdeg { font-size: 50px; line-height: 50px; font-weight: bold; color: #fbbf24; margin-top: 14px; margin-left: 4px; }
+.condrow { flex-direction: row; align-items: center; margin-top: 6px; }
+.wicon { width: 112px; height: 112px; }
+.condcol { flex-direction: column; margin-left: 18px; }
+.cond { font-size: 40px; line-height: 44px; font-weight: bold; color: #fbbf24; }
+.sub { font-size: 21px; line-height: 26px; color: #8b9bb4; margin-top: 4px; }
+.hint { height: 58px; border-radius: 17px; background-color: rgba(251, 191, 36, 0.10); border-width: 1px; border-color: rgba(251, 191, 36, 0.18); flex-direction: row; align-items: center; padding-left: 20px; padding-right: 20px; }
+.hintdot { width: 10px; height: 10px; border-radius: 5px; background-color: #fbbf24; margin-right: 12px; }
+.hinttxt { font-size: 24px; line-height: 30px; color: #fde68a; }
+.swipe { height: 26px; margin-top: 10px; text-align: center; font-size: 19px; line-height: 26px; color: #64748b; }
+.title { height: 40px; flex-direction: row; align-items: center; }
+.bar { width: 5px; height: 22px; border-radius: 3px; background-color: #fbbf24; margin-right: 10px; }
+.titletxt { font-size: 32px; line-height: 40px; font-weight: bold; color: #f1f5f9; }
+.hlist { margin-top: 6px; flex-direction: column; }
+.hrow { height: 62px; flex-direction: row; align-items: center; justify-content: space-between; }
+.htime { width: 96px; font-size: 24px; line-height: 30px; color: #9fb0c7; }
+.hright { flex-direction: row; align-items: center; }
+.hicon { width: 48px; height: 48px; margin-right: 18px; }
+.htemp { width: 86px; text-align: right; font-size: 48px; line-height: 54px; font-weight: bold; color: #f1f5f9; }
+.gridwrap { margin-top: 14px; width: 288px; flex-direction: row; flex-wrap: wrap; justify-content: space-between; }
+.card { width: 134px; height: 126px; margin-bottom: 14px; border-radius: 20px; background-color: rgba(255, 255, 255, 0.055); border-width: 1px; border-color: rgba(255, 255, 255, 0.08); flex-direction: column; align-items: center; justify-content: center; }
+.cicon { width: 30px; height: 30px; }
+.clabel { font-size: 20px; line-height: 26px; color: #8b9bb4; margin-top: 6px; }
+.cvalue { font-size: 34px; line-height: 40px; font-weight: bold; color: #f1f5f9; margin-top: 2px; }
+.cgood { color: #86efac; }
+.cwarn { color: #fbbf24; }
+.csm { font-size: 28px; line-height: 36px; }
+.dlist { margin-top: 8px; flex-direction: column; }
+.drow { height: 48px; flex-direction: row; align-items: center; }
+.dname { width: 82px; font-size: 22px; line-height: 28px; color: #dbe6f5; }
+.dicon { width: 30px; height: 30px; }
+.dhigh { margin-left: auto; width: 62px; text-align: right; font-size: 26px; line-height: 32px; font-weight: bold; color: #f1f5f9; }
+.dlow { width: 56px; text-align: right; font-size: 21px; line-height: 26px; color: #8b9bb4; }
+.s5wrap { margin-top: 24px; flex-direction: column; align-items: center; }
+.arc { width: 288px; height: 163px; flex-shrink: 0; }
+.arclabels { width: 288px; height: 26px; flex-direction: row; justify-content: space-between; }
+.arclabel { font-size: 20px; line-height: 26px; color: #cbd5e1; }
+.nowtext { margin-top: 14px; font-size: 22px; line-height: 28px; color: #fde68a; }
+.daylentext { margin-top: 6px; font-size: 19px; line-height: 24px; color: #8b9bb4; }
+.dev-mask { position: absolute; left: 0; top: 0; width: 336px; height: 480px; background-color: rgba(3, 8, 18, 0.72); align-items: center; justify-content: center; }
+.dev-card { width: 284px; background-color: #101d33; border-width: 1px; border-color: rgba(255, 255, 255, 0.10); border-radius: 16px; padding: 12px 16px 14px 16px; flex-direction: column; }
+.dev-head { height: 28px; flex-direction: row; align-items: center; justify-content: space-between; }
+.dev-title { font-size: 19px; line-height: 24px; font-weight: bold; color: #f1f5f9; }
+.dev-close { width: 26px; height: 26px; border-radius: 13px; background-color: rgba(255, 255, 255, 0.08); align-items: center; justify-content: center; }
+.dev-close-x { font-size: 18px; line-height: 20px; color: #a8b6cc; }
+.dev-row { height: 22px; margin-top: 4px; flex-direction: row; align-items: center; justify-content: space-between; }
+.dev-k { font-size: 14px; line-height: 18px; color: #8b9bb4; }
+.dev-v { font-size: 14px; line-height: 18px; color: #e2e8f0; }
+</style>
+
+<script>
+import app from '@system.app'
+import device from '@system.device'
+import vibrator from '@system.vibrator'
+import prompt from '@system.prompt'
+
+export default {
+  data: {
+    showDev: false,
+    pageIndex: 0,
+    model: 'Vela 模拟器',
+    apiLevel: '—',
+    hours: [
+      { time: '现在', icon: '/common/weather/w-partly.png', temp: 23 },
+      { time: '15时', icon: '/common/weather/w-cloudy.png', temp: 22 },
+      { time: '16时', icon: '/common/weather/w-overcast.png', temp: 21 },
+      { time: '17时', icon: '/common/weather/w-rain.png', temp: 20 },
+      { time: '18时', icon: '/common/weather/w-rain.png', temp: 19 }
+    ],
+    days: [
+      { day: '今天', icon: '/common/weather/w-partly.png', high: 26, low: 17 },
+      { day: '周五', icon: '/common/weather/w-cloudy.png', high: 25, low: 16 },
+      { day: '周六', icon: '/common/weather/w-rain.png', high: 24, low: 15 },
+      { day: '周日', icon: '/common/weather/w-clear.png', high: 26, low: 17 },
+      { day: '周一', icon: '/common/weather/w-clear.png', high: 27, low: 18 },
+      { day: '周二', icon: '/common/weather/w-overcast.png', high: 25, low: 16 },
+      { day: '周三', icon: '/common/weather/w-rain.png', high: 24, low: 15 }
+    ]
+  },
+  onBackPress() { return true },
+  onPageChange(e) { this.pageIndex = (e && e.index) || 0 },
+  onInit() {
+    try {
+      device.getInfo({
+        success: (info) => {
+          const d = info || {}
+          this.model = d.model || d.product || d.brand || 'Vela 模拟器'
+          this.apiLevel = String(d.apiLevel || d.api || d.platformVersionName || '5.0')
+        },
+        fail: () => {}
+      })
+    } catch (e) {}
+  },
+  onExit() {
+    try { vibrator.vibrate({ duration: 15 }) } catch (e) {}
+    let exited = false
+    try {
+      if (app && typeof app.terminate === 'function') { app.terminate(); exited = true }
+    } catch (e) {}
+    if (!exited) { try { prompt.showToast({ message: '已退出天气' }) } catch (e) {} }
+  },
+  onMore() {
+    try { vibrator.vibrate({ duration: 10 }) } catch (e) {}
+    this.showDev = true
+  },
+  onCloseDev() { this.showDev = false },
+  stopProp() {}
+}
+</script>
